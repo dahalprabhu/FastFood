@@ -1,0 +1,56 @@
+<html>
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    </head>
+</head>
+<body>
+<div class="container">
+<h1> SEARCH </h1>
+<form method="POST" action="/search/">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="col-lg-5">
+    <input type="text" name="srh" class="form-control" placeholder="ENTER FOOD OR PLACES" required>
+               
+        </div>
+        <label class="col-lg-2">
+            <button type="submit" class="btn btn_danger">SEARCH</button>
+        </label>
+    </div>
+</form>
+<div>
+    {% if messages %}
+      <ul class="messages">
+          {% for k in messages %}
+          <li style="color: red">{{ k }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}  
+</div><br>
+ <div style="color: blue">
+
+    {% if sr %}
+       {% for k in sr %}
+       <table border="0px" width="300px">
+        <tr>
+            <td>NAME</td>
+            <td>{{ k.name }}</td>
+        </tr>
+        <tr>
+            <td>price</td>
+            <td>{{ k.price }}</td>
+        </tr>
+        <tr>
+            <td>Restaurant</td>
+            <td>{{k.resturant.name }}</td>
+        </tr> 
+        
+       </table>
+ </div>
+ <hr>
+       {% endfor %}
+    {% endif %}        
+</div>
+</body>
+</html>

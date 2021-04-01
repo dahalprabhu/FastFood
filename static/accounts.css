@@ -1,0 +1,15 @@
+.forlogin, .forregister{
+    background-color:rgb(223, 223, 209);
+    margin: auto;
+    width: 75%;
+}
+input{
+    padding:5px;
+    margin-top:4px;
+    margin-bottom:4px;
+}
+.form{
+    margin:auto;
+    width:75%;
+    background-color: rgb(134, 236, 231);
+}

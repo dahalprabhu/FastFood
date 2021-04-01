@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Cart</title>
+</head>
+<body>
+    
+    
+
+<div class="container">
+  <h2>Cart</h2>
+  <p>Check out the fooditems in your cart</p>            
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Resturant</th>
+        <th>Food item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for i in cartitems %}
+      <tr>
+        <td>{{ i.item.resturant.name }}</td>
+        <td>{{i}}</td>
+        <td><a href="{% url 'add-singleitem-to-cart' i.item.slug %}"><span><strong class="mx-1">+</strong></span></a>|{{i.quantity}} |<a href="{% url 'remove-singleitem-to-cart' i.item.slug %}"span><strong class="mx-1">-</strong></span></a></td>
+        <td>{{i.get_total_price }} </td>
+        <td> <a href="{{i.get_remove_from_cart_url}}"> Delete </a></span></td>      
+        </tr>
+        {% endfor %}
+        <tr>
+            <td>Total price</td>
+            <td><h5>{{totalling}}</h5></td>
+            <a style="float:right" href="/checkout/" class="btn btn-danger"> checkout  </a>
+        </tr>
+    </tbody>
+        
+</body>
+</html>
+
+
+

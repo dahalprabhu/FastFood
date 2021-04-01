@@ -1,0 +1,85 @@
+{%  extends 'main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders">
+			  	<div class="card-header">
+			  		<h5 class="card-title" style="color:black">Total Orders</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title" style="color:black">{{sum}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-delivered">
+			  	<div class="card-header">
+			  		<h5 class="card-title" style="color:black">customer may order(in cart)</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title" style="color:black">{{incartotal}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	
+</div>
+
+<br>
+
+<div class="row">
+	<div class="col-md-5">
+		
+
+				{% for customer in customers %}
+					<tr>
+						<td><a class="btn btn-sm btn-info" href="{% url 'resturant:customer' customer.id %}">View</a></td>
+						<td>{{customer.name}}</td>
+						<td>{{customer.phone}}</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-7">
+		<h5>LAST 5 ORDERS</h5>
+		<hr>
+		<div class="card card-body">
+			
+			<table class="table table-sm">
+				<tr>
+					<th>Product</th>
+					<th>Date Ordered</th>
+					<th>Customer</th>
+					
+					<th>Remove</th>
+				</tr>
+
+				{% for i in foodsarray %}
+					<tr>
+						<td>{{i}}</td>
+						<td>{{i.date_added}}</td>
+						<td>{{i.user}}</td>
+						<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' i.id %}">Delete</a></td>
+					</tr>
+				{% endfor %}
+
+		
+			</table>
+		</div>
+	</div>
+
+</div>
+
+{% endblock %}

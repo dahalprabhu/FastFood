@@ -1,0 +1,13 @@
+
+.box1{
+    border: 1px solid green;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+}
+#division{
+    background-color: white;
+}
+.forcart{
+    border: 2px solid green;
+}

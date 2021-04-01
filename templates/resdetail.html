@@ -1,0 +1,26 @@
+
+<div class="container1">
+    <div class="forcart">
+        <h4>cart</h4>
+    </div>
+    
+    <div class="box1">
+       
+        <div id="division">
+            
+            {{object}}
+            <p>{{object.desc}}</p> 
+        </div>
+        foo item
+        <div id="division">
+          {% for i in fooditems %}  
+            {{i.price}}
+             {{ i.name }}  
+             <a href="{{ i.get_add_to_cart_url }}" class="btn btn-outline-danger">Add to Cart</a><br>  
+            
+        {% endfor %}
+        </div>
+
+                
+    </div>
+  

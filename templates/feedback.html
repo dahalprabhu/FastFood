@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<!-- Basic -->
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>FASTFOOD </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+   
+
+    <!-- Bootstrap CSS -->
+   
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+                                    
+<style>
+    div.relative {
+        
+        left: 250px;
+      } 
+</style>                                      
+<body>
+
+    {% for message in messages %}
+	 <div style="background-color: brown;" id="messages"><h5 style="margin: auto; width:50%">{{message}}</h5></div>
+	{% endfor %}
+    <!-- Start Main Top -->
+    <div class="main-top">
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i><a href="/" style="color: white;"> WELCOME TO FASTFOOD</a>
+                                </li>
+                              
+                               
+                               
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="our-link">
+                   
+                           
+                   
+                    <ul>
+                        <form method="POST" action="/search/">
+                        {% csrf_token %}
+                        <li><input type="text" name="srh" placeholder="ENTER FOOD ITEMS"required></li>
+                        <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></li>
+                        {% if request.user.is_authenticated %}
+                        <span class="hello-msg px-1" style="color: blanchedalmond;">Hello, {{request.user}}</span>
+                        <span ><a  class="hello-msg px-1" href="{% url 'logout' %}">Logout</a></span>
+                        <span ><a  class="btn btn-primary px-3" href="{% url 'cart' %}">Cart</a></span>
+                        {% else %}
+                        <span ><a  class="hello-msg px-3" href="/register/">Register</a></span>
+                        <span ><a  class="hello-msg" href="{% url 'login' %}">Login</a></span>
+                        {% endif %}
+
+                         
+                    </ul>
+                    
+                </div>                
+                    
+                   
+                </div>
+           
+            </div>
+        
+        </div>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+          <h1>Thank You for your Order</h1>
+          <h4>We will deliver in time</h4>
+          <p>Keep Ordering Stay Healthy</p>
+        </div>
+    
+      </div>

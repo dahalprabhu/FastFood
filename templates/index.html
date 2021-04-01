@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<!-- Basic -->
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Site Metas -->
+    <title>FASTFOOD </title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+   
+
+    <!-- Bootstrap CSS -->
+   
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+</head>
+                                    
+<style>
+    div.relative {
+        
+        left: 250px;
+      } 
+</style>                                      
+<body>
+
+    {% for message in messages %}
+	 <div style="background-color: brown;" id="messages"><h5 style="margin: auto; width:50%">{{message}}</h5></div>
+	{% endfor %}
+    <!-- Start Main Top -->
+    <div class="main-top">
+        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="text-slid-box">
+                        <div id="offer-box" class="carouselTicker">
+                            <ul class="offer-box">
+                                <li>
+                                    <i class="fab fa-opencart"></i><a href="/" style="color: white;"> WELCOME TO FASTFOOD</a>
+                                </li>
+                              
+                               
+                               
+                                
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="our-link">
+                   
+                           
+                   
+                    <ul>
+                        <form method="POST" action="/search/">
+                        {% csrf_token %}
+                        <li><input type="text" name="srh" placeholder="ENTER FOOD ITEMS"required></li>
+                        <li><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button></li>
+                        {% if request.user.is_authenticated %}
+                        <span class="hello-msg px-1" style="color: blanchedalmond;">Hello, {{request.user}}</span>
+                        <span ><a  class="hello-msg px-1" href="{% url 'logout' %}">Logout</a></span>
+                        <span ><a  class="btn btn-primary px-3" href="{% url 'cart' %}">Cart</a></span>
+                        {% else %}
+                        <span ><a  class="hello-msg px-3" href="/register/">Register</a></span>
+                        <span ><a  class="hello-msg" href="{% url 'login' %}">Login</a></span>
+                        {% endif %}
+
+                         
+                    </ul>
+                    
+                </div>                
+                    
+                   
+                </div>
+           
+            </div>
+        
+        </div>
+    </div>
+    
+                 
+           
+ 
+    
+   
+   
+      <!-- Start Slider -->
+    <div id="slides-shop" class="cover-slides">
+        <ul class="slides-container">
+            <li class="text-left">
+                <img src="{% static 'images/pic 1.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>LOOKING FOR FOOD<br></strong></h1>
+                           
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-center">
+                <img src="{% static 'images/pic 2.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong>WELCOME TO FASTFOOD<br> </strong></h1>
+                          
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="text-right">
+                <img src="{% static 'images/pic 1.jpg' %}" alt="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1 class="m-b-20"><strong> <br> </strong></h1>
+                           
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="slides-navigation">
+            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+        </div>
+    </div>
+  
+
+    <div class="latest-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Open Resturants</h1>
+                        <p>Check out if you find something intresting</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                {% for i in res  %}
+                <div class="col-md-6 col-lg-4 col-xl-4">
+                    
+                    <div class="blog-box">
+                        
+                        <div class="blog-img">
+                        
+                          <a href="{{i.get_absolute_url}}"> <img class="img-fluid" src="{{ i.image.url }}" alt="" /></a>
+                        </div>
+                        <div class="blog-content">
+                            <div class="title-blog">
+                                <h3><a href="{{i.get_absolute_url}}">{{i.name}}</a></h3>
+                                
+                            </div>
+                            <ul class="option-blog">
+                                
+                        </div>
+                       
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+           
+        </div>
+    </div>
+    <!-- End Blog  -->
+
+    
+    <div class="products-box">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="title-all text-center">
+                        <h1>Featured Items</h1>
+                        <p>TRENDING FOOD ITEMS AROUND YOU</p>
+                    </div>
+                </div>
+            </div>
+           
+                </div>
+            </div>
+
+            <div class="row special-list mt-1" id='featured'>
+                {% for i in foods %}
+                <div class="col-lg-3 col-md-6 special-grid best-seller">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <a href=""><img src="{{ i.image.url }}" class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                  
+                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                </ul>
+                                <a class="cart" href="{{ i.get_add_to_cart_url }}">Add to Cart</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4>{{i.name}}</h4>
+                            <h5></h5>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+
+                
+    </div>
+    <!-- End Products  -->
+
+    <!-- Start Blog  -->
+    
+
+          
+    <!-- End Instagram Feed  -->
+
+
+    <!-- Start Footer  -->
+    <footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4> FASTFOOD</h4>
+                            <p>The main goal of our website is meeting the user needs.Check out Latest hotels and food
+                                </p>
+                          
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link">
+                            <h4>Information</h4>
+                            <ul>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Our Sitemap</a></li>
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address:Kathmandu,nepal <br><br>  </p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone:9861705255</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email:mandishdahal56@gmail.com </a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer  -->
+
+    <!-- Start copyright  -->
+    <div class="footer-copyright">
+        <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">FASTFOOD</a> Design By : Mandish,Anup,Prabhu
+           
+    <!-- End copyright  -->
+
+    <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+   
+</body>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<!-- ALL PLUGINS -->
+<script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+<script src="{% static 'js/bootstrap-select.js' %}"></script>
+<script src="{% static 'js/inewsticker.js' %}"></script>
+<script src="{% static 'js/bootsnav.js' %}"></script>
+<script src="{% static 'js/images-loded.min.js' %"></script>
+<script src="{% static 'js/isotope.min.js' %}"></script>
+<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'js/baguetteBox.min.js' %}"></script>
+<script src="{% static 'js/form-validator.min.js' %}"></script>
+<script src="{% static 'js/contact-form-script.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</html>
